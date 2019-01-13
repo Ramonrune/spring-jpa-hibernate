@@ -1,5 +1,5 @@
 package com.pluralsight.repository;
-
+/*
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -36,7 +36,7 @@ public class GoalRepositoryImpl implements GoalRepository {
 		 * 
 		 * @SuppressWarnings("unchecked") List<Goal> goals = query.getResultList();
 		 */
-		TypedQuery<Goal> query = entityManager.createNamedQuery(Goal.FIND_ALL_GOALS, Goal.class);
+		/*TypedQuery<Goal> query = entityManager.createNamedQuery(Goal.FIND_ALL_GOALS, Goal.class);
 
 		return query.getResultList();
 	}
@@ -49,4 +49,4 @@ public class GoalRepositoryImpl implements GoalRepository {
 		return query.getResultList();
 	}
 
-}
+}*/

@@ -1,5 +1,5 @@
 package com.pluralsight.repository;
-
+/*
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,7 +15,9 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
 	
 	public Exercise save(Exercise exercise) {
 		entityManager.persist(exercise);
+		entityManager.flush();
 		return exercise;
 	}
 
 }
+*/
