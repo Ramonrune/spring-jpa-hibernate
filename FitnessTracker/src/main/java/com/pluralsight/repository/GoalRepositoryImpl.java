@@ -17,29 +17,34 @@ public class GoalRepositoryImpl implements GoalRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	public Goal save(Goal goal) {
-		entityManager.persist(goal);
-		entityManager.flush();
-		  
+		if (goal.getId() == null) {
+			entityManager.persist(goal);
+			entityManager.flush();
+
+		} else {
+			goal = entityManager.merge(goal);
+		}
+
 		return goal;
 	}
 
 	public List<Goal> findAllGoals() {
-		/*Query query = entityManager.createQuery("select g from Goal g");
-
-		@SuppressWarnings("unchecked")
-		List<Goal> goals = query.getResultList();
-		*/
+		/*
+		 * Query query = entityManager.createQuery("select g from Goal g");
+		 * 
+		 * @SuppressWarnings("unchecked") List<Goal> goals = query.getResultList();
+		 */
 		TypedQuery<Goal> query = entityManager.createNamedQuery(Goal.FIND_ALL_GOALS, Goal.class);
 
-		
 		return query.getResultList();
-	}   
+	}
 
 	public List<GoalReport> findAllGoalReports() {
-		//Query query = entityManager.createQuery("select new com.pluralsight.model.GoalReport(g.minutes, e.minutes, e.activity) from "
-			//	+ "Goal g, Exercise e where g.id = e.goal.id");
+		// Query query = entityManager.createQuery("select new
+		// com.pluralsight.model.GoalReport(g.minutes, e.minutes, e.activity) from "
+		// + "Goal g, Exercise e where g.id = e.goal.id");
 		TypedQuery<GoalReport> query = entityManager.createNamedQuery(Goal.FIND_GOAL_REPORTS, GoalReport.class);
 		return query.getResultList();
 	}
